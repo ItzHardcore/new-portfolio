@@ -14,13 +14,12 @@ function Footer() {
     <Container fluid className="footer">
       <Row>
         <Col md="4" className="footer-copywright">
-          <h3>Templated by <a href="https://github.com/soumyajit4419/Portfolio"
-            style={{ color: "white" }}
+          <h3>Templated by <a href="https://github.com/soumyajit4419/Portfolio" style={{ color: "white" }}
             target="_blank"
             rel="noopener noreferrer">Soumyajit Behera</a></h3>
         </Col>
         <Col md="4" className="footer-copywright">
-
+          <h3>Copyright © {year}</h3>
         </Col>
         <Col md="4" className="footer-body">
           <ul className="footer-icons">
