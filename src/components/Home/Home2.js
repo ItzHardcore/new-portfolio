@@ -19,26 +19,27 @@ function Home2() {
               A BIT <span className="purple">ABOUT </span> MYSELF
             </h1>
             <p className="home-about-body">
-              I fell in love with programming and I have at least learnt
-              something, I think… 🤷‍♂️
+              I'm really into Frontend development and I enjoy backend aswell. I consider myself as a
+              fast learner and a proactive guy! 😉
               <br />
-              <br />I am fluent in classics like
+              <br />I work with
               <i>
-                <b className="purple"> C++, Javascript and Go. </b>
+                <b className="purple"> Javascript, JAVA and Python! </b>
               </i>
+              🤓
               <br />
               <br />
-              My field of Interest's are building new &nbsp;
+              I'm interested in building new &nbsp;
               <i>
                 <b className="purple">Web Technologies and Products </b> and
-                also in areas related to{" "}
+                also in{" "}
                 <b className="purple">
-                  Blockchain.
+                  Mobile development.
                 </b>
               </i>
               <br />
               <br />
-              Whenever possible, I also apply my passion for developing products
+              I like to develop my projects
               with <b className="purple">Node.js</b> and
               <i>
                 <b className="purple">
@@ -48,7 +49,7 @@ function Home2() {
               </i>
               &nbsp; like
               <i>
-                <b className="purple"> React.js and Next.js</b>
+                <b className="purple"> React.js and Vue.js</b>
               </i>
             </p>
           </Col>
