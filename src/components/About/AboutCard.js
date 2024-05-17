@@ -10,7 +10,7 @@ function AboutCard() {
             Hi again, I am <span className="purple">Bruno Silva </span>
             from <span className="purple"> Lisbon, Portugal.</span>
             <br />
-            I am currently employed as a quality assurance engineer at <span className="purple">Premium Minds.</span>
+            I am currently employed as a Quality Assurance engineer at <span className="purple">Premium Minds.</span>
             <br />
             I've done 6 months of <span className="purple">fullstack development</span> with PHP.
             <br />

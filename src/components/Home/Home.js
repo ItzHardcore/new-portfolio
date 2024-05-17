@@ -6,7 +6,7 @@ import Type from "./Type";
 
 function Home() {
   return (
-    <section>
+    <>
       <Container fluid className="home-section" id="home">
         <Container className="home-content">
           <Row>
@@ -40,7 +40,7 @@ function Home() {
         </Container>
       </Container>
       <Home2 />
-    </section>
+    </>
   );
 }
 
