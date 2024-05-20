@@ -7,21 +7,21 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Hi again, I am <span className="purple">Bruno Silva </span>
-            from <span className="purple"> Lisbon, Portugal.</span>
+            Hi again, I am <span className="custom_color">Bruno Silva </span>
+            from <span className="custom_color"> Lisbon, Portugal.</span>
             <br />
-            I am currently employed as a Quality Assurance engineer at <span className="purple">Premium Minds.</span>
+            I am currently employed as a Quality Assurance Engineer at <span className="custom_color">Premium Minds.</span>
             <br />
-            I've done 6 months of <span className="purple">fullstack development</span> with PHP.
+            I've done 6 months of <span className="custom_color">fullstack development</span> with PHP.
             <br />
-            I have completed a <span className="purple">BSc in Computer Science</span> at ISCTE-IUL (Lisbon).
+            I have completed a <span className="custom_color">BSc in Computer Science</span> at ISCTE-IUL (Lisbon).
             <br />
             <br />
             Apart from coding, some other activities that I like to do!
           </p>
           <ul>
             <li className="about-activity">
-              💪 Gym Addict lightweight baby!!!
+              💪 Gym rat lightweight baby!!!
             </li>
             <li className="about-activity">
               🍻 Beer with friends
