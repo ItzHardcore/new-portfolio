@@ -33,7 +33,7 @@ function About() {
 
           </Col>
         </Row>
-        <h1 className="project-heading">
+        <h1 className="project-heading mt-5">
           Professional <strong className="custom_color">Skillset </strong>
         </h1>
 
