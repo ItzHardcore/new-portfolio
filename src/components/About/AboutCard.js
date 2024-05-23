@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import { SiBitcoin } from "react-icons/si";
 
 function AboutCard() {
   return (
@@ -28,6 +29,9 @@ function AboutCard() {
             </li>
             <li className="about-activity">
               👨‍💻 New tech and geek things :)
+            </li>
+            <li className="about-activity">
+              <SiBitcoin color="orange" className="ms-1 mb-1" /> Bitcoin enthusiast
             </li>
             <li className="about-activity">
               🌞 Going to the beach

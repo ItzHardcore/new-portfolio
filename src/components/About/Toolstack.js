@@ -3,14 +3,12 @@ import { Col, Row, Tooltip, OverlayTrigger } from "react-bootstrap";
 import {
   SiVisualstudiocode,
   SiPostman,
-  SiSlack,
   SiVercel,
-  SiMacos,
-  SiWindows,
   SiJira,
   SiBitbucket,
   SiFirebase,
   SiNpm,
+  SiUbuntu,
 } from "react-icons/si";
 
 function Toolstack() {
@@ -24,10 +22,10 @@ function Toolstack() {
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
       <OverlayTrigger
         placement="bottom"
-        overlay={tooltip("tooltip1", "Windows")}
+        overlay={tooltip("tooltip1", "Ubuntu")}
       >
         <Col xs={4} md={2} lg={3} className="tech-icons">
-          <SiWindows />
+          <SiUbuntu />
         </Col>
       </OverlayTrigger>
 
