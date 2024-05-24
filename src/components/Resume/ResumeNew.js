@@ -35,7 +35,7 @@ function ResumeNew() {
                 <AiOutlineDownload />
                 &nbsp;Download CV
               </Button></a>
-              <img src={pdfjpeg} alt="pdf" className="w-50"></img>
+              <img src={pdfjpeg} alt="pdf" ></img>
             </div>
           </object>
         </div>
