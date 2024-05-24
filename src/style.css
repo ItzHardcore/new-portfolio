@@ -411,6 +411,8 @@ button:focus {
   bottom: 0 !important;
   padding-top: 10px !important;
   padding-bottom: 8px !important ;
+  height: 115px;
+  align-content: center;
 }
 .footer-copywright {
   text-align: center !important;
@@ -609,12 +611,14 @@ button:focus {
   padding-bottom: 30px !important;
   background-image: var(--section-background-color) !important;
   color: white !important;
+  min-height: calc(100vh - 115px);
 }
 
 .resume {
-  padding-top: 50px;
-  padding-bottom: 50px;
   justify-content: center;
+  width: calc(100vh* 3 / 4);
+  height: 100vh;
+  margin: auto;
 }
 
 .resume-left {
