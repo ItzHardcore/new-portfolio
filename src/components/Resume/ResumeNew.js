@@ -29,7 +29,7 @@ function ResumeNew() {
             height="100%" >
             <div className="d-inline-grid" style={{ justifyItems: "center" }}>
 
-              <a className="mb-3 p-3" href={pdf}><Button
+              <a className="mb-3 p-3" href={pdf} download="CV_Bruno_Silva.pdf"><Button
                 variant="primary"
               >
                 <AiOutlineDownload />
