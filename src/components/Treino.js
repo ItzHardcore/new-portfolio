@@ -2,10 +2,32 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const treino = {
-  "Dia A – Força & Estabilidade": [...],
-  "Dia B – Volume & Mobilidade": [...],
-  "Dia C – Técnica & Core Profundo": [...],
-  "Dia D – Isolamento & Lombar": [...]
+  "Dia A – Força & Estabilidade": [
+    { nome: "Agachamento com barra", series: 3 },
+    { nome: "Supino inclinado com halteres", series: 3 },
+    { nome: "Puxada frontal com triângulo", series: 3 },
+    { nome: "Bird-Dog (por lado)", series: 3 }
+  ],
+  "Dia B – Volume & Mobilidade": [
+    { nome: "Leg press", series: 3 },
+    { nome: "Press de ombro com halteres", series: 3 },
+    { nome: "Remada baixa com triângulo", series: 3 },
+    { nome: "Elevações laterais", series: 3 },
+    { nome: "Dead Bug", series: 3 }
+  ],
+  "Dia C – Técnica & Core Profundo": [
+    { nome: "Agachamento frontal (ou goblet squat)", series: 3 },
+    { nome: "Supino reto com barra", series: 3 },
+    { nome: "Remada unilateral com haltere", series: 3 },
+    { nome: "Prancha lateral (cada lado)", series: 3 }
+  ],
+  "Dia D – Isolamento & Lombar": [
+    { nome: "Leg extension", series: 3 },
+    { nome: "Push-ups ou fundos em paralelas", series: 3 },
+    { nome: "Curl de bíceps com barra ou halteres", series: 3 },
+    { nome: "Elevação de gémeos em pé com halteres", series: 3 },
+    { nome: "Hip Thrust (ou glute bridge)", series: 3 }
+  ]
 };
 
 function getStoredData() {
@@ -19,47 +41,43 @@ function storeData(chave, valor) {
   localStorage.setItem("treinoNotas", JSON.stringify(data));
 }
 
-function guardarNotas() {
-  const inputs = document.querySelectorAll("input, textarea");
-  inputs.forEach((input) => {
-    const chave = input.dataset.key;
-    const valor = input.value;
-    if (chave) {
-      storeData(chave, valor);
-    }
-  });
-  alert("Notas guardadas com sucesso!");
-}
-
-function carregarNotas() {
-  const dados = getStoredData();
-  const inputs = document.querySelectorAll("input, textarea");
-  inputs.forEach((input) => {
-    const chave = input.dataset.key;
-    if (chave && dados[chave]) {
-      input.value = dados[chave];
-    }
-  });
-}
-
-const Treino = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+function Treino() {
+  const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
-    carregarNotas();
+    const dados = getStoredData();
+    const inputs = document.querySelectorAll("input, textarea");
+    inputs.forEach((input) => {
+      const chave = input.dataset.key;
+      if (chave && dados[chave]) {
+        input.value = dados[chave];
+      }
+    });
   }, []);
+
+  const guardarNotas = () => {
+    const inputs = document.querySelectorAll("input, textarea");
+    inputs.forEach((input) => {
+      const chave = input.dataset.key;
+      const valor = input.value;
+      if (chave) {
+        storeData(chave, valor);
+      }
+    });
+    alert("Notas guardadas com sucesso!");
+  };
 
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-4">Plano de Treino Fullbody - 4x por semana</h1>
       <div className="accordion" id="accordionTreino">
         {Object.entries(treino).map(([dia, exercicios], index) => (
-          <div className="accordion-item" key={dia}>
+          <div className="accordion-item" key={index}>
             <h2 className="accordion-header">
               <button
                 className={`accordion-button ${activeIndex === index ? "" : "collapsed"}`}
                 type="button"
-                onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
+                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
               >
                 {dia}
               </button>
@@ -72,27 +90,25 @@ const Treino = () => {
                   <div className="card mb-3" key={i}>
                     <div className="card-body">
                       <h5>{`${ex.nome} (${ex.series} séries)`}</h5>
-                      <div>
-                        {[...Array(ex.series)].map((_, s) => (
-                          <div className="d-flex align-items-center gap-2 mb-2" key={s}>
-                            <span>Série {s + 1}:</span>
-                            <input
-                              type="number"
-                              className="form-control"
-                              placeholder="Reps"
-                              style={{ width: "140px" }}
-                              data-key={`${dia}-${i}-serie${s + 1}-reps`}
-                            />
-                            <input
-                              type="number"
-                              className="form-control"
-                              placeholder="Carga (kg)"
-                              style={{ width: "140px" }}
-                              data-key={`${dia}-${i}-serie${s + 1}-carga`}
-                            />
-                          </div>
-                        ))}
-                      </div>
+                      {[...Array(ex.series)].map((_, s) => (
+                        <div className="d-flex gap-2 mb-2" key={s}>
+                          <span>Série {s + 1}:</span>
+                          <input
+                            type="number"
+                            className="form-control"
+                            placeholder="Reps"
+                            data-key={`${dia}-${i}-serie${s + 1}-reps`}
+                            style={{ width: "120px" }}
+                          />
+                          <input
+                            type="number"
+                            className="form-control"
+                            placeholder="Carga (kg)"
+                            data-key={`${dia}-${i}-serie${s + 1}-carga`}
+                            style={{ width: "120px" }}
+                          />
+                        </div>
+                      ))}
                       <textarea
                         className="form-control mt-2"
                         rows="2"
@@ -114,6 +130,6 @@ const Treino = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Treino;
