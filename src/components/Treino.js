@@ -1,33 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const treino = {
-  "Dia A – Força & Estabilidade": [
-    { nome: "Agachamento com barra", series: 3 },
-    { nome: "Supino inclinado com halteres", series: 3 },
-    { nome: "Puxada frontal com triângulo", series: 3 },
-    { nome: "Bird-Dog (por lado)", series: 3 },
-  ],
-  "Dia B – Volume & Mobilidade": [
-    { nome: "Leg press", series: 3 },
-    { nome: "Press de ombro com halteres", series: 3 },
-    { nome: "Remada baixa com triângulo", series: 3 },
-    { nome: "Elevações laterais", series: 3 },
-    { nome: "Dead Bug", series: 3 },
-  ],
-  "Dia C – Técnica & Core Profundo": [
-    { nome: "Agachamento frontal (ou goblet squat)", series: 3 },
-    { nome: "Supino reto com barra", series: 3 },
-    { nome: "Remada unilateral com haltere", series: 3 },
-    { nome: "Prancha lateral (cada lado)", series: 3 },
-  ],
-  "Dia D – Isolamento & Lombar": [
-    { nome: "Leg extension", series: 3 },
-    { nome: "Push-ups ou fundos em paralelas", series: 3 },
-    { nome: "Curl de bíceps com barra ou halteres", series: 3 },
-    { nome: "Elevação de gémeos em pé com halteres", series: 3 },
-    { nome: "Hip Thrust (ou glute bridge)", series: 3 },
-  ],
+  "Dia A – Força & Estabilidade": [...],
+  "Dia B – Volume & Mobilidade": [...],
+  "Dia C – Técnica & Core Profundo": [...],
+  "Dia D – Isolamento & Lombar": [...]
 };
 
 function getStoredData() {
@@ -65,6 +43,8 @@ function carregarNotas() {
 }
 
 const Treino = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   useEffect(() => {
     carregarNotas();
   }, []);
@@ -77,20 +57,15 @@ const Treino = () => {
           <div className="accordion-item" key={dia}>
             <h2 className="accordion-header">
               <button
-                className={`accordion-button ${index > 0 ? "collapsed" : ""}`}
+                className={`accordion-button ${activeIndex === index ? "" : "collapsed"}`}
                 type="button"
-                data-bs-toggle="collapse"
-                data-bs-target={`#collapse${index}`}
-                aria-expanded={index === 0}
-                aria-controls={`collapse${index}`}
+                onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
               >
                 {dia}
               </button>
             </h2>
             <div
-              id={`collapse${index}`}
-              className={`accordion-collapse collapse ${index === 0 ? "show" : ""}`}
-              data-bs-parent="#accordionTreino"
+              className={`accordion-collapse collapse ${activeIndex === index ? "show" : ""}`}
             >
               <div className="accordion-body">
                 {exercicios.map((ex, i) => (
