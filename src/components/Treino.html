@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano de Treino Fullbody</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f4f4f9;
+    }
+    .container {
+      max-width: 960px;
+      margin-top: 40px;
+    }
+    input[type=number] {
+      width: 140px;
+    }
+    textarea {
+      resize: none;
+    }
+    .serie-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-4">Plano de Treino Fullbody - 4x por semana</h1>
+    <div class="accordion" id="accordionTreino"></div>
+    <div class="text-center mt-4">
+      <button class="btn btn-primary" onclick="guardarNotas()">Guardar</button>
+    </div>
+  </div>
+
+  <script>
+    const treino = {
+      "Dia A – Força & Estabilidade": [
+        { nome: "Agachamento com barra", series: 3 },
+        { nome: "Supino inclinado com halteres", series: 3 },
+        { nome: "Puxada frontal com triângulo", series: 3 },
+        { nome: "Bird-Dog (por lado)", series: 3 }
+      ],
+      "Dia B – Volume & Mobilidade": [
+        { nome: "Leg press", series: 3 },
+        { nome: "Press de ombro com halteres", series: 3 },
+        { nome: "Remada baixa com triângulo", series: 3 },
+        { nome: "Elevações laterais", series: 3 },
+        { nome: "Dead Bug", series: 3 }
+      ],
+      "Dia C – Técnica & Core Profundo": [
+        { nome: "Agachamento frontal (ou goblet squat)", series: 3 },
+        { nome: "Supino reto com barra", series: 3 },
+        { nome: "Remada unilateral com haltere", series: 3 },
+        { nome: "Prancha lateral (cada lado)", series: 3 }
+      ],
+      "Dia D – Isolamento & Lombar": [
+        { nome: "Leg extension", series: 3 },
+        { nome: "Push-ups ou fundos em paralelas", series: 3 },
+        { nome: "Curl de bíceps com barra ou halteres", series: 3 },
+        { nome: "Elevação de gémeos em pé com halteres", series: 3 },
+        { nome: "Hip Thrust (ou glute bridge)", series: 3 }
+      ]
+    };
+
+    function getStoredData() {
+      const data = localStorage.getItem('treinoNotas');
+      return data ? JSON.parse(data) : {};
+    }
+
+    function storeData(chave, valor) {
+      const data = getStoredData();
+      data[chave] = valor;
+      localStorage.setItem('treinoNotas', JSON.stringify(data));
+    }
+
+    function guardarNotas() {
+      const inputs = document.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        const chave = input.dataset.key;
+        const valor = input.value;
+        if (chave) {
+          storeData(chave, valor);
+        }
+      });
+      alert("Notas guardadas com sucesso!");
+    }
+
+    function carregarNotas() {
+      const dados = getStoredData();
+      const inputs = document.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        const chave = input.dataset.key;
+        if (chave && dados[chave]) {
+          input.value = dados[chave];
+        }
+      });
+    }
+
+    function criarUI() {
+      const accordion = document.getElementById('accordionTreino');
+      let index = 0;
+      for (const [dia, exercicios] of Object.entries(treino)) {
+        const item = document.createElement('div');
+        item.className = 'accordion-item';
+
+        const header = document.createElement('h2');
+        header.className = 'accordion-header';
+        header.innerHTML = `<button class="accordion-button${index > 0 ? ' collapsed' : ''}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="${index === 0}" aria-controls="collapse${index}">${dia}</button>`;
+
+        const collapse = document.createElement('div');
+        collapse.id = `collapse${index}`;
+        collapse.className = `accordion-collapse collapse${index === 0 ? ' show' : ''}`;
+        collapse.setAttribute('data-bs-parent', '#accordionTreino');
+
+        const body = document.createElement('div');
+        body.className = 'accordion-body';
+
+        exercicios.forEach((ex, i) => {
+          const cardEx = document.createElement('div');
+          cardEx.className = "card mb-3";
+
+          const cardExBody = document.createElement('div');
+          cardExBody.className = "card-body";
+
+          const exTitle = document.createElement('h5');
+          exTitle.innerText = `${ex.nome} (${ex.series} séries)`;
+
+          const seriesGroup = document.createElement('div');
+          for (let s = 1; s <= ex.series; s++) {
+            const serieDiv = document.createElement('div');
+            serieDiv.className = "serie-input";
+            serieDiv.innerHTML = `
+              <span>Série ${s}:</span>
+              <input type="number" class="form-control reps" placeholder="Reps" data-key="${dia}-${i}-serie${s}-reps">
+              <input type="number" class="form-control carga" placeholder="Carga (kg)" data-key="${dia}-${i}-serie${s}-carga">
+            `;
+            seriesGroup.appendChild(serieDiv);
+          }
+
+          const notas = document.createElement('textarea');
+          notas.className = "form-control mt-2";
+          notas.rows = 2;
+          notas.placeholder = "Notas...";
+          notas.dataset.key = `${dia}-${i}-notas`;
+
+          cardExBody.appendChild(exTitle);
+          cardExBody.appendChild(seriesGroup);
+          cardExBody.appendChild(notas);
+          cardEx.appendChild(cardExBody);
+          body.appendChild(cardEx);
+        });
+
+        collapse.appendChild(body);
+        item.appendChild(header);
+        item.appendChild(collapse);
+        accordion.appendChild(item);
+        index++;
+      }
+      setTimeout(carregarNotas, 100);
+    }
+
+    document.addEventListener("DOMContentLoaded", criarUI);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
