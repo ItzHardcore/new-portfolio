@@ -2,31 +2,37 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const treino = {
-  "Dia A – Força & Estabilidade": [
+  "Dia A – Full Body 1": [
+    { nome: "Incline Bench Press com halteres", series: 3 },
+    { nome: "Desenvolvimento com halteres", series: 3 },
+    { nome: "Leg Extension (máquina)", series: 3 },
+    { nome: "Remada alta na polia (pegada fechada)", series: 3 },
+    { nome: "Bíceps com halteres", series: 3 },
+    { nome: "Prancha frontal", series: 3 }
+  ],
+  "Dia B – Full Body 2": [
+    { nome: "Flys na máquina (peito)", series: 3 },
+    { nome: "Elevações laterais com halteres", series: 3 },
     { nome: "Agachamento com barra", series: 3 },
-    { nome: "Supino inclinado com halteres", series: 3 },
-    { nome: "Puxada frontal com triângulo", series: 3 },
-    { nome: "Bird-Dog (por lado)", series: 3 }
+    { nome: "Remada alta na polia", series: 3 },
+    { nome: "Tríceps na polia (corda ou barra)", series: 3 },
+    { nome: "Elevação de pernas (abdómen)", series: 3 }
   ],
-  "Dia B – Volume & Mobilidade": [
-    { nome: "Leg press", series: 3 },
-    { nome: "Press de ombro com halteres", series: 3 },
-    { nome: "Remada baixa com triângulo", series: 3 },
-    { nome: "Elevações laterais", series: 3 },
-    { nome: "Dead Bug", series: 3 }
+  "Dia C – Full Body 3": [
+    { nome: "Incline Bench Press com halteres", series: 3 },
+    { nome: "Desenvolvimento com halteres", series: 3 },
+    { nome: "Leg Curl (máquina)", series: 3 },
+    { nome: "Remada alta na polia", series: 3 },
+    { nome: "Bíceps com halteres (martelo ou inclinado)", series: 3 },
+    { nome: "Crunch com peso", series: 3 }
   ],
-  "Dia C – Técnica & Core Profundo": [
-    { nome: "Agachamento frontal (ou goblet squat)", series: 3 },
-    { nome: "Supino reto com barra", series: 3 },
-    { nome: "Remada unilateral com haltere", series: 3 },
-    { nome: "Prancha lateral (cada lado)", series: 3 }
-  ],
-  "Dia D – Isolamento & Lombar": [
-    { nome: "Leg extension", series: 3 },
-    { nome: "Push-ups ou fundos em paralelas", series: 3 },
-    { nome: "Curl de bíceps com barra ou halteres", series: 3 },
-    { nome: "Elevação de gémeos em pé com halteres", series: 3 },
-    { nome: "Hip Thrust (ou glute bridge)", series: 3 }
+  "Dia D – Full Body 4": [
+    { nome: "Flys na máquina (peito)", series: 3 },
+    { nome: "Elevações laterais com halteres", series: 3 },
+    { nome: "Abdutores (máquina)", series: 3 },
+    { nome: "Leg Curl (máquina)", series: 3 },
+    { nome: "Tríceps na polia (barra ou corda)", series: 3 },
+    { nome: "Roda abdominal ou prancha lateral", series: 3 }
   ]
 };
 
